@@ -51,7 +51,7 @@ function initializeDirectories() {
   });
 }
 
-initializeDirectories();
+
 function getcatagorey(fileName) {
   const ext = path.extname(fileName).toLocaleLowerCase();
   // [images]: ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg']],
@@ -67,14 +67,57 @@ function organizeFiles() {
   console.log('source: ', sourceDir);
   console.log('Destination : ', organziedDir);
   console.log('\n' + '-'.repeat.apply(50) + '\n');
-  const files = fs.readdirSync(sourceDir);
-  if(files.length===0){
-    console.log("No files to work on!!")
-    return
+  const files=fs.readdirSync(sourceDir);
+  if(files.length==0){
+    console.log("There is no files to work on!!!");
+    return;
   }
-  console.log( `Found  ${files.length} filese to organize \n`)
+  console.log(`Found ${files.length} files to organize \n`);
   const stats={
     total:0,
     byCategory:{}
   }
+  files.forEach((file)=>{
+    const sourcePath=path.join(sourceDir,file);
+    const stat=fs.statSync(sourcePath);
+    if(stat.isDirectory()){
+      return;
+    }
+    const catagorey=getcatagorey(file);
+    const destDir=path.join(organziedDir,catagorey);
+    const destPath=path.join(destDir,file);
+    fs.copyFileSync(sourcePath,destPath);
+    stats.total++;
+    stats.byCategory[catagorey]=(stats.byCategory[catagorey]||0)+1;
+
+    console.log(`${file}`);
+    console.log(`${catagorey}`);
+    console.log(`${stat.size}`);
+  })
+}
+const showHelp=()=>{
+  console.log(`
+    File organizer usage:
+    commands:
+    init-create files
+
+    organize-organize files into catagories
+     example:
+        node file-organizer init
+        node file-organizer organize
+    `)
+}
+const command=process.argv[2];
+switch(command){
+  case "init":{
+    initializeDirectories();
+    break;
+  }
+  case "organize":{
+    organizeFiles();
+    break;
+  }
+  default:
+  showHelp();
+  break;
 }
