@@ -1,0 +1,13 @@
+const os = require('os');
+console.log('System o \n');
+console.log('\n Platform Details: \n');
+console.log('Plateform: ', os.platform());
+console.log('Architechure: ', os.arch());
+const cpus = os.cpus();
+console.log('CPU Model: ', cpus[0].model);
+console.log('CPU Cores: ', cpus.length);
+console.log('CPU Speed: ', cpus[0].speed);
+const totalMem = os.totalmem();
+const freeMem = os.freemem();
+console.log('Free Memo',  (freeMem / 1024 / 1024 / 1024).toFixed(2));
+console.log('Total Memory: ', (totalMem / 1024 / 1024 / 1024).toFixed(2));
