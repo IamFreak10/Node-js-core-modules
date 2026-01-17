@@ -1,0 +1,24 @@
+{
+  "name": "node-js-core-modules",
+  "version": "1.0.0",
+  "description": "",
+  "main": "append-file.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IamFreak10/Node-js-core-modules.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/IamFreak10/Node-js-core-modules/issues"
+  },
+  "homepage": "https://github.com/IamFreak10/Node-js-core-modules#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}

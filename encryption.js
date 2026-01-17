@@ -17,7 +17,7 @@ function decrypt(encryptedData, ivHex) {
   let decrypted = dicipher.update(encryptedData, 'hex', 'utf-8');
   decrypted += dicipher.final('utf-8');
   return decrypted;
-}
+} 
 console.log('Encrypted Data: ');
 const sensitiveData = 'My credit card:4242 4242 4242 4242';
 console.log('Orginal Data : ', sensitiveData);
